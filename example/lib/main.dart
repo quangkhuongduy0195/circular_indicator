@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flutter/services.dart';
-import 'package:circular_indicator/circular_indicator.dart';
+import 'package:circular_indicator/circular_indicator_widget.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,34 +15,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-
+  double _value = 0;
+  Timer? _timer;
   @override
   void initState() {
     super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await CircularIndicator.platformVersion ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
   }
 
   @override
@@ -51,10 +27,70 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Indicator'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              child: CircularIndicatorWidget(
+                width: 200,
+                height: 200,
+                current: _value,
+                maxStep: 100,
+                widthLine: 2.5,
+                heightLine: 20,
+                gradientColor: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [Colors.cyan, Colors.orangeAccent],
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.teal.shade100,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                      child: Text(
+                    _value.toStringAsFixed(0),
+                    style: const TextStyle(
+                      color: Colors.teal,
+                      fontSize: 50,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  )),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            Slider(
+              min: 0,
+              max: 100,
+              value: _value,
+              onChanged: (value) {
+                setState(() {
+                  _value = value;
+                });
+              },
+            ),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.access_alarm),
+          onPressed: () {
+            if (_timer != null) return;
+            _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+              setState(() {
+                if (_value == 100) {
+                  _value = 0;
+                } else {
+                  _value += 25;
+                }
+              });
+            });
+          },
         ),
       ),
     );
