@@ -31,7 +31,8 @@ class CircularIndicatorWeb {
       default:
         throw PlatformException(
           code: 'Unimplemented',
-          details: 'circular_indicator for web doesn\'t implement \'${call.method}\'',
+          details:
+              'circular_indicator for web doesn\'t implement \'${call.method}\'',
         );
     }
   }
