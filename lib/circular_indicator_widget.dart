@@ -15,6 +15,7 @@ class CircularIndicatorWidget extends StatefulWidget {
     this.widthLine = 3,
     this.heightLine = 20,
     this.curve = Curves.easeInOutQuint,
+    this.duration = const Duration(seconds: 2),
   }) : super(key: key);
 
   final double current;
@@ -28,6 +29,7 @@ class CircularIndicatorWidget extends StatefulWidget {
   final Widget? child;
   final Gradient? gradientColor;
   final Curve curve;
+  final Duration duration;
 
   @override
   _CircularIndicatorWidgetState createState() =>
@@ -45,7 +47,7 @@ class _CircularIndicatorWidgetState extends State<CircularIndicatorWidget>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: widget.duration,
     );
     _animation = Tween(begin: 0.0, end: widget.current).animate(
       CurvedAnimation(
@@ -110,7 +112,13 @@ class _CircularIndicatorWidgetState extends State<CircularIndicatorWidget>
                 turns: const AlwaysStoppedAnimation(90 / 360),
                 child: Padding(
                   padding: EdgeInsets.all(widget.heightLine),
-                  child: widget.child,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
+                    clipBehavior: Clip.antiAlias,
+                    child: widget.child,
+                  ),
                 ),
               ),
             ),

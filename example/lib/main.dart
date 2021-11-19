@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:circular_indicator/circular_indicator_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,16 +41,14 @@ class _MyAppState extends State<MyApp> {
                 maxStep: 100,
                 widthLine: 2.5,
                 heightLine: 20,
+                curve: Curves.easeInOutCirc,
                 gradientColor: const LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [Colors.cyan, Colors.orangeAccent],
                 ),
                 child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.teal.shade100,
-                    shape: BoxShape.circle,
-                  ),
+                  color: Colors.teal.shade200,
                   child: Center(
                       child: Text(
                     _value.toStringAsFixed(0),
