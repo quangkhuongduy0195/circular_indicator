@@ -1,6 +1,7 @@
 name: circular_indicator
 description: A new Flutter project.
-version: 0.0.1
+repository: https://github.com/quangkhuongduy0195/circular_indicator
+version: 1.0.0
 homepage:
 
 environment:
