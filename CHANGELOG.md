@@ -1,15 +1,24 @@
-##1.0.5
+## 1.0.6
 * Add how to use
-##1.0.4	
+
+## 1.0.5
 * Add how to use
-##1.0.3	
+
+## 1.0.4	
 * Add how to use
-##1.0.2	
+
+## 1.0.3	
 * Add how to use
-##1.0.1
+
+## 1.0.2	
 * Add how to use
-##1.0.0
+
+## 1.0.1
 * Add how to use
+
+## 1.0.0
+* Add how to use
+
 ## 0.0.1
 
 * Describe initial release.

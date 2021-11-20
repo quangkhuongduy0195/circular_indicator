@@ -1,7 +1,7 @@
 name: circular_indicator
-description: A new Flutter project.
+description: Bar indicator made of a series of selected and unselected steps
 repository: https://github.com/quangkhuongduy0195/circular_indicator
-version: 1.0.5
+version: 1.0.6
 homepage:
 
 environment:
