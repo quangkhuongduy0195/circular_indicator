@@ -6,6 +6,23 @@
 </p>
 
 
+```dart
+  CircularIndicatorWidget(
+    width: 200,
+    height: 200,
+    current: _value,
+    maxStep: 100,
+    widthLine: 2.5,
+    heightLine: 20,
+    curve: Curves.easeInOutCirc,
+    gradientColor: const LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [Colors.cyan, Colors.orangeAccent],
+  )
+```
+
+
 | Parameter| Type| Description| Default|
 |----------|-----|------------|---------|
 |**maxStep**|double|Total number of step of the complete indicator.|100|
