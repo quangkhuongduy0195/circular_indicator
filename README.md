@@ -2,6 +2,6 @@
 
 ## Demo
 <p align="center">
-  <img src="https://raw.githubusercontent.com/imtoori/flutter-slide-to-act/master/example/demo/demo.gif" alt="sample gif"/>
+  <img src="https://github.com/quangkhuongduy0195/circular_indicator/blob/main/example/demo/demo.gif" alt="sample gif"/>
 </p>
 
